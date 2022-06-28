@@ -12,7 +12,6 @@ export class OrderController {
 
   @Post()
   public async createOrder(@Body() order: Order): Promise<Order> {
-    order.orders[0].flavorOne = new mongoose.Types.ObjectId(order.orders[0].flavorOne.toString())
 
     order.orders.forEach((order) => {
       order.flavorOne = new mongoose.Types.ObjectId(order.flavorOne.toString())
