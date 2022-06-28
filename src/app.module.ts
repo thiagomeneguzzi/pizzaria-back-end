@@ -5,10 +5,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PizzaModule } from "./pizzas/pizza.module";
 import { OrderModule } from "./orders/order.module";
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://Pizzaria:mzRxVBGoXiSEnOgi@cluster0.hfzpecy.mongodb.net/Pizzaria?retryWrites=true&w=majority"),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    MongooseModule.forRoot(`${process.env.MONGO_URI}`),
     PizzaModule,
     OrderModule
   ],
